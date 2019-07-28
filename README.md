@@ -1,2 +1,2 @@
 # DMOJ
-solutions to various problems on dmoj.ca
+Java solutions to various problems on dmoj.ca
