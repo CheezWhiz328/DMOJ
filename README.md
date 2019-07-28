@@ -1,2 +1,2 @@
-# dmoj-problems
-splutions to various problems on dmoj.ca
+# DMOJ
+solutions to various problems on dmoj.ca
