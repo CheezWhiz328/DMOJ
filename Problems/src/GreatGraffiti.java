@@ -5,20 +5,15 @@ public class GreatGraffiti {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		String a = sc.next();
-		int count = 4;
-		if(a.contains("D")) {
-			count--;
+		if(a.length()==4) {
+			System.out.println(0);
+		}else if(a.contains("MOJ")||a.contains("DMO")||a.contains("DMJ")||a.contains("DOJ")) {
+			System.out.println(1);
+		}else if(a.contains("DM")||a.contains("DO")||a.contains("DJ")||a.contains("MO")||a.contains("MJ")||a.contains("OJ")) {
+			System.out.println(2);
+		}else {
+			System.out.println(3);
 		}
-		if(a.contains("M")) {
-			count--;
-		}
-		if(a.contains("O")) {
-			count--;
-		}
-		if(a.contains("J")) {
-			count--;
-		}
-		System.out.println(count);
 //		if(a.contains("DMOJ")) {
 //			System.out.print("0");
 //		}
