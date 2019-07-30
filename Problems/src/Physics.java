@@ -20,6 +20,7 @@ public class Physics {
 		double count1 = count + round;
 		
 		double count2 = count - round;
+		
 		//task 17 -- difficult to do properly in Java
 		
 		long countb = (long)count2;
