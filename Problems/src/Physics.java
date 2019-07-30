@@ -21,6 +21,7 @@ public class Physics {
 		
 		double count2 = count - round;
 		//task 17 -- difficult to do properly in Java
+		
 		long countb = (long)count2;
 		long countc = 50024508048694L;
 		if(countb==countc){
