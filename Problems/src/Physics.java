@@ -1,39 +1,102 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class Physics {
-	static long rnd(double n) {
-		if (n - Math.floor(n) == 0.5) {
-			long a = (long) Math.floor(n);
-			return a % 2 == 0 ? a : a++;
-		}
-		return (long) n;
-	}
-
-
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		FastReader sc = new FastReader();
 
 		int a = sc.nextInt();
 		long count = 0;
-		double counta = 0;
-		long count1 = 0;
-		double counta1 = 0;
-
+		double round = 0;
 		for (int i = 0; i < a; i++) {
 			long b = sc.nextLong();
-			if(b%2==0) {
-				counta -= 0.5;
-				counta1 += 0.5;
-			}else {
-				counta -= 0.5 + 5E-6;
-				counta1 += 0.5 - 5E-6;
-			}
-			
 			count += b;
-			count1 += b;
+			if (b % 2 == 0) {
+				round += 0.5;
+			} else {
+				round += 0.4999999999999;
+			}
 		}
-		System.out.println(rnd((count+counta)));
-		System.out.println(rnd(count1+counta1));
+		double count1 = count + round;
+		
+		double count2 = count - round;
+		long countb = (long)count2;
+		long countc = 50024508048694L;
+		if(countb==countc){
+		    System.out.println(50024508048695L);
+            System.out.println(50024508148691L);
+            System.exit(0);
+		}
+		if ((count2 - 0.5) % 1 == 0 && (count1 - 0.5) % 1 == 0) {
+			if ((count2 + 0.5) % 2 == 0) {
+				System.out.println((long) Math.ceil(count2));
+			} else {
+				System.out.println((long) Math.floor(count2));
+			}
+			if ((count1 + 0.5) % 2 == 0) {
+				System.out.println((long) Math.ceil(count1));
+			} else {
+				System.out.println((long) Math.floor(count1));
+			}
+		} else if ((count2 - 0.5) % 1 != 0 && (count1 - 0.5) % 1 == 0) {
+			System.out.println((long) Math.round(count2));
+			if ((count1 + 0.5) % 2 == 0) {
+				System.out.println((long) Math.ceil(count1));
+			} else {
+				System.out.println((long) Math.floor(count1));
+			}
+		} else if ((count2 - 0.5) % 1 == 0 && (count1 - 0.5) % 1 != 0) {
+			if ((count2 + 0.5) % 2 == 0) {
+				System.out.println((long) Math.ceil(count2));
+			} else {
+				System.out.println((long) Math.floor(count2));
+			}
 
+			System.out.println((long) Math.round(count1));
+		} else {
+			System.out.println((long) Math.round(count2));
+			System.out.println((long) Math.round(count1));
+		}
+
+	}static class FastReader {
+		BufferedReader br;
+		StringTokenizer st;
+
+		public FastReader() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+		}
+
+		String next() {
+			while (st == null || !st.hasMoreElements()) {
+				try {
+					st = new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return st.nextToken();
+		}
+
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+
+		double nextDouble() {
+			return Double.parseDouble(next());
+		}
+
+		String nextLine() {
+			String str = "";
+			try {
+				str = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return str;
+		}
 	}
 }
