@@ -1,32 +1,30 @@
 import java.util.*;
 import java.io.*;
 
-public class toweringTowers {
-
+public class HapaxLegomenon {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
+		int a = sc.nextInt();
+		String[] b = new String[a];
+		for(int i=0; i<a; i++) {
+			b[i] = sc.next();
 		}
-
-		for(int i=0; i<N; i++) {
-			int count = 0;
-			int get = stack[i];
-			for(int j=i-1; j>=0; j--) {
-				if(stack[j]>get) {
-					count++;
-					break;
-				}
-				
+		
+		int count = 0;
+		for(int i=0; i<a; i++) {
+			String c = b[i];
+			int count1 = 0;
+			for(String word : b){
+			    if(word.equals(c)) 
+			        count1++;
+			}
+			if(count1==1) {
 				count++;
 			}
-
-			System.out.print(count+" ");
-		}
+		}System.out.println(count);
+		
 	}
-
+	
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

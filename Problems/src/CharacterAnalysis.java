@@ -1,32 +1,26 @@
 import java.util.*;
 import java.io.*;
 
-public class toweringTowers {
-
+public class CharacterAnalysis {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
+		String a = sc.next();
+		String b = sc.next();
+		
+		int c[] = new int[128];
+		for(int i=0; i<a.length()-1; i++) {
+			c[a.charAt(i)]++;
+			c[b.charAt(i)]--;
 		}
-
-		for(int i=0; i<N; i++) {
-			int count = 0;
-			int get = stack[i];
-			for(int j=i-1; j>=0; j--) {
-				if(stack[j]>get) {
-					count++;
-					break;
-				}
-				
-				count++;
+		c[a.charAt(a.length()-1)]++;
+		for(int i=0; i<128; i++) {
+			if(c[i]!=0) {
+				System.out.println((char)i);
+				break;
 			}
-
-			System.out.print(count+" ");
 		}
 	}
-
+	
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

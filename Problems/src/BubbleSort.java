@@ -1,29 +1,36 @@
 import java.util.*;
 import java.io.*;
 
-public class toweringTowers {
+public class BubbleSort {
 
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
+		int a = sc.nextInt();
+		int b[] = new int[a];
+		for (int i = 0; i < a; i++) {
+			b[i] = sc.nextInt();
 		}
+		
+		for(int i=0; i<a; i++) {
+			System.out.print(b[i]+" ");
+		}
+		System.out.println();
 
-		for(int i=0; i<N; i++) {
-			int count = 0;
-			int get = stack[i];
-			for(int j=i-1; j>=0; j--) {
-				if(stack[j]>get) {
-					count++;
-					break;
+		boolean sorted = false;
+		while (!sorted) {
+			sorted = true;
+			for(int i = 1; i<a; i++) {
+				if(b[i] < b[i-1]) {
+					sorted = false;
+					int c = b[i];
+					b[i] = b[i-1];
+					b[i-1] = c;
+					for(int print = 0; print <a; print++) {
+						System.out.print(b[print]+" ");
+					}
+					System.out.println();
 				}
-				
-				count++;
 			}
-
-			System.out.print(count+" ");
 		}
 	}
 

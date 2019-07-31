@@ -1,29 +1,37 @@
 import java.util.*;
 import java.io.*;
 
-public class toweringTowers {
-
+public class cccjqrp4 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
-		}
+		int n = sc.nextInt();
+		// https://oeis.org/A000984, hardcode to 1 mil
+		LinkedList<Integer> bico = new LinkedList<Integer>();
+		bico.add(1);
+		bico.add(2);
+		bico.add(6);
+		bico.add(20);
+		bico.add(70);
+		bico.add(252);
+		bico.add(924);
+		bico.add(3432);
+		bico.add(12870);
+		bico.add(48620);
+		bico.add(184756);
+		bico.add(705432);
 
-		for(int i=0; i<N; i++) {
-			int count = 0;
-			int get = stack[i];
-			for(int j=i-1; j>=0; j--) {
-				if(stack[j]>get) {
-					count++;
+
+		for (int i = 1; i <= n; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			boolean c = true;
+			for (int j = 0; j < bico.size(); j++) {
+				if (i == bico.get(j)) {
+					c = false;
 					break;
 				}
-				
-				count++;
 			}
-
-			System.out.print(count+" ");
+			System.out.println(c ? a + b : a - b);
 		}
 	}
 

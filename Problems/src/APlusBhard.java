@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// too much work
 public class APlusBhard {
 	static String findSum(String str1, String str2) {
 		// str 2 is larger

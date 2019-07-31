@@ -1,30 +1,42 @@
 import java.util.*;
 import java.io.*;
 
-public class toweringTowers {
-
+public class CrayolaLightsaber {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
-		}
-
-		for(int i=0; i<N; i++) {
-			int count = 0;
-			int get = stack[i];
-			for(int j=i-1; j>=0; j--) {
-				if(stack[j]>get) {
-					count++;
-					break;
-				}
-				
-				count++;
+		int a = sc.nextInt();
+		int[] col = new int[6];
+		int count = 0;
+		for (int i = 0; i < a; i++) {
+			count++;
+			String b = sc.next();
+			if (b.equals("red")) {
+				col[0]++;
 			}
-
-			System.out.print(count+" ");
+			if (b.equals("orange")) {
+				col[1]++;
+			}
+			if (b.equals("yellow")) {
+				col[2]++;
+			}
+			if (b.equals("green")) {
+				col[3]++;
+			}
+			if (b.equals("blue")) {
+				col[4]++;
+			}
+			if (b.equals("black")) {
+				col[5]++;
+			}
 		}
+
+		int max = 0;
+		for (int i = 0; i < 6; i++) {
+			if (col[i] > max)
+				max = col[i];
+		}
+		int r = count - max;
+		System.out.println(Math.min(max, r + 1) + r);
 	}
 
 	static class FastReader {
