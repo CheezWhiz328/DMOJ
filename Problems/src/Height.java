@@ -1,31 +1,20 @@
 import java.util.*;
 import java.io.*;
 
-public class LoveGuru {
-	static int ans(String a) {
-		int count = 0;
-		for (int i = 0; i < a.length(); i++) {
-			int b = a.charAt(i) - 'a' + 1;
-			count += Math.pow(b, i % 4 + 1);
-			count %= 10;
-
-		}
-		if (count == 0) {
-			count = 10;
-		}
-		return count;
-	}
-
+//incomplete
+public class Height {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		String a = sc.next();
-		a = a.toLowerCase();
-		String b = sc.next();
-		b = b.toLowerCase();
-		System.out.println(ans(a) + ans(b));
-
+		int a = sc.nextInt();
+		int b[] = new int[a];
+		for(int i=0; i<a; i++) {
+			b[i] = sc.nextInt();
+		}
+		
+		int max = 0;
+		
 	}
-
+	
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;
