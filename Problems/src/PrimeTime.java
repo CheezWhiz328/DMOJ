@@ -1,12 +1,41 @@
 import java.io.*;
-public class SimplyaSimplexProblem {
+
+public class PrimeTime {
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
+		boolean prime[] = new boolean[10005];
+		prime[1] = true;
+		for(int i=2; i<=10000; i++) {
+			if(prime[i]==false) {
+				for(int j=i*i; j<=10000; j+=i) {
+					prime[j] = true;
+				}
+			}
+		}
+		
+		for(int i=0; i<5; i++) {
+			int a = sc.nextInt();
+			int lprime = 0;
+			for(int j=a; j>=2; j--) {
+				if(!prime[j]) {
+					lprime = j;
+					break;
+				}
+			}
 
-		int a = sc.nextInt();
-		for (int i = 0; i < a; i++) {
-			long M = sc.nextLong();
-			System.out.println((long)Math.round((Math.sqrt(M * 2) + 1)));
+			for(int l=2; l<=a; l++) {
+				if(!prime[l]) {
+					int count = 0;
+					int x = l;
+					while(a/x>0) {
+						count += a/x;
+						x *= l;
+					}
+					
+					System.out.print(l!=lprime ? l+"^"+count+" * " : l+"^"+count);
+				}
+			}
+			System.out.println();
 		}
 	}
 	
