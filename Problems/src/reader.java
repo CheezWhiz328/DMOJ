@@ -109,7 +109,7 @@ public class reader {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Reader s = new Reader();
+		Reader sc = new Reader();
 
 	}
 }

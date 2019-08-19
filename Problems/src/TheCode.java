@@ -1,23 +1,22 @@
 import java.io.*;
-import java.util.*;
-public class toweringTowers {
 
+public class TheCode {
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
+		int a = sc.nextInt();
+		int arr[] = new int[a];
+		for (int i = 0; i < a; i++) {
+			arr[i] = sc.nextInt();
 		}
-		
-		Deque<Integer> array = new ArrayDeque<Integer>(N);
-		System.out.print(0+" ");
-		for(int i=1; i<N; i++) {
-			while (!array.isEmpty () && stack[array.peek ()] <= stack[i]) {
-				array.pop ();
+
+		int i = 0;
+		while (arr[i] != 0) {
+			i += arr[i];
+			if (arr[i] == 0) {
+				System.exit(0);
 			}
-			System.out.print((array.isEmpty () ? i : i - array.peek ())+" ");
-			array.push (i);
+			System.out.print((char) (arr[i] + 64));
+			i++;
 		}
 	}
 

@@ -1,26 +1,27 @@
-import java.io.*;
-import java.util.*;
-public class toweringTowers {
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
 
+public class Klopka {
+	
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
+		
+		int a = sc.nextInt();
+		int arr[] = new int[a];
+		int arr1[] = new int[a];
+		for(int i=0; i<a; i++) {
+			arr[i] = sc.nextInt();
+			arr1[i] = sc.nextInt();
 		}
 		
-		Deque<Integer> array = new ArrayDeque<Integer>(N);
-		System.out.print(0+" ");
-		for(int i=1; i<N; i++) {
-			while (!array.isEmpty () && stack[array.peek ()] <= stack[i]) {
-				array.pop ();
-			}
-			System.out.print((array.isEmpty () ? i : i - array.peek ())+" ");
-			array.push (i);
-		}
-	}
+		Arrays.sort(arr);
+		Arrays.sort(arr1);
+		System.out.println(Math.max((arr[a-1]-arr[0]) * (arr[a-1]-arr[0]), (arr1[a-1]-arr1[0]) * (arr1[a-1]-arr1[0])));
 
+	}
+	
 	static class Reader {
 		final private int BUFFER_SIZE = 1 << 16;
 		private DataInputStream din;
@@ -125,4 +126,5 @@ public class toweringTowers {
 			din.close();
 		}
 	}
+
 }
