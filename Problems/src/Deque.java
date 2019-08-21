@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class deque {
+public class Deque {
 	static long[][] dp = new long[105][105];
 	static boolean[][] check = new boolean[105][105];
 	static long[] board = new long[105];

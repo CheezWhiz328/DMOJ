@@ -1,24 +1,32 @@
 import java.io.*;
-import java.util.*;
-public class toweringTowers {
 
+public class CircleClicking {
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
-		int N = sc.nextInt();
-		int[] stack = new int[N];
-		for(int i=0; i<N; i++) {
-			stack[i] = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int x[] = new int[a];
+		int y[] = new int[a];
+		for (int i = 0; i < a; i++) {
+			x[i] = sc.nextInt();
+			y[i] = sc.nextInt();
 		}
-		
-		ArrayDeque<Integer> array = new ArrayDeque<Integer>(N);
-		System.out.print(0+" ");
-		for(int i=1; i<N; i++) {
-			while (!array.isEmpty () && stack[array.peek ()] <= stack[i]) {
-				array.pop ();
+		int max = 0;
+		int count = 1;
+		for (int i = 1; i < a; i++) {
+			int x1 = x[i] - x[i - 1];
+			int y1 = y[i] - y[i - 1];
+			if (x1 * x1 + y1 * y1 <= b * b) {
+				count++;
+				max = Math.max(max, count);
+			} else {
+				max = Math.max(max, count);
+				count = 0;
 			}
-			System.out.print((array.isEmpty () ? i : i - array.peek ())+" ");
-			array.push (i);
+			
+
 		}
+		System.out.println(max);
 	}
 
 	static class Reader {
