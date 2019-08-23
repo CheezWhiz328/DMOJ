@@ -1,26 +1,29 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
-public class modCalculator {
-	static long get_power(int X, int Y, int M){
-		long answer = 1;
-		for (long base = X, group = 1; group <= Y; group*=2, base = ((long)base*base) % M){
-			if ((group & Y) > 0){
-				answer = (long) answer * (base) % M;
-			}
-		}
-		return answer;
-	}
+public class ShoeShopping {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		int a = sc.nextInt();
-		int b = sc.nextInt();
-		System.out.println(get_power(a, b, 1000000007));
+		double arr[] = new double[a + 1];
+		for (int i = 1; i <= a; i++) {
+			arr[i] = sc.nextDouble();
+		}
+		double dp[] = new double[a + 1];
 
+		for (int i = 1; i <= a; i++) {
+			dp[i] = arr[i];
+			dp[i] += dp[i - 1];
+			if (i >= 2)
+				dp[i] = Math.min(dp[i],
+						Math.min(dp[i], dp[i - 2] - Math.min(arr[i], arr[i - 1]) / 2 + arr[i] + arr[i - 1]));
+			if (i >= 3)
+				dp[i] = Math.min(dp[i], dp[i - 3] - Math.min(arr[i - 2], Math.min(arr[i], arr[i - 1])) + arr[i]
+						+ arr[i - 1] + arr[i - 2]);
+		}
+		System.out.printf("%.1f", dp[a]);
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

@@ -5,6 +5,7 @@ import java.util.*;
 
 public class SingleSourceShortestPath {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] Args) {
 		FastReader in = new FastReader();
 

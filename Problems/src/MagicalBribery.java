@@ -1,26 +1,26 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
-public class modCalculator {
-	static long get_power(int X, int Y, int M){
-		long answer = 1;
-		for (long base = X, group = 1; group <= Y; group*=2, base = ((long)base*base) % M){
-			if ((group & Y) > 0){
-				answer = (long) answer * (base) % M;
-			}
-		}
-		return answer;
-	}
+public class MagicalBribery {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		int a = sc.nextInt();
-		int b = sc.nextInt();
-		System.out.println(get_power(a, b, 1000000007));
+		int dp[][] = new int[1005][1005];
+		int arr[] = new int[1005];
+		for (int i = 1; i <= a; i++) {
+			arr[i] = sc.nextInt();
+		}
 
+		for (int i = 1; i <= a; i++) {
+			for (int j = 1; j <= a; j++) {
+				dp[i][j] = j < i ? dp[i - 1][j]
+						:  Math.max(dp[i - 1][j],
+								Math.max(dp[i][j - i], dp[i - 1][j - i]) + arr[i]);
+			}
+		}
+		System.out.println(dp[a][a]);
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

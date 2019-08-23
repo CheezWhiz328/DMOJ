@@ -1,24 +1,32 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
-public class modCalculator {
-	static long get_power(int X, int Y, int M){
-		long answer = 1;
-		for (long base = X, group = 1; group <= Y; group*=2, base = ((long)base*base) % M){
-			if ((group & Y) > 0){
-				answer = (long) answer * (base) % M;
-			}
-		}
-		return answer;
-	}
+public class TheTriangle {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		int a = sc.nextInt();
-		int b = sc.nextInt();
-		System.out.println(get_power(a, b, 1000000007));
-
+		int arr[][] = new int[a+1][a+1];
+		int dp[][] = new int[a+1][a+1];
+		for(int i=1; i<=a; i++) {
+			for(int j=1; j<=i; j++) {
+				arr[i][j] = sc.nextInt();
+			}
+		}
+		for(int i=1; i<=a; i++) {
+			for(int j=1; j<=i; j++) {
+				dp[i][j] = Math.max(dp[i-1][j] + arr[i][j], dp[i-1][j-1]+arr[i][j]);
+			}
+		}
+//		for(int i=1; i<a+1; i++) {
+//			for(int j=1; j<a+1; j++) {
+//				System.out.print(dp[i][j]+" ");
+//			}System.out.println();
+//		}
+		int max = 0;
+		for(int i=0; i<a; i++) {
+			max = Math.max(max, dp[a][i]);
+		}
+		System.out.println(max);
 	}
 	
 	static class FastReader {
