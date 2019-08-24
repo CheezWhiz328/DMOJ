@@ -2,68 +2,16 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class DisjointSetTest {
-	public static Edge[] edge;
-	public static int[] parent;
-	public static int[] mst;
-
-	public static class Edge {
-		int bv;
-		int ev;
-	}
-
-	public static int find(int n) {
-		if (parent[n] != n) {
-			parent[n] = find(parent[n]);
-		}
-
-		return parent[n];
-	}
-
-	public static void union(int n1, int n2) {
-		parent[n1] = n2;
-	}
-
+public class Tarifa {
 	public static void main(String[] args) throws IOException {
-		// TODO code application logic here
 		Reader sc = new Reader();
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		edge = new Edge[m];
-		for (int i = 0; i < m; i++) {
-			edge[i] = new Edge();
-			edge[i].bv = sc.nextInt() - 1;
-			edge[i].ev = sc.nextInt() - 1;
-		}
-		parent = new int[n];
-		for (int i = 0; i < n; i++) {
-			parent[i] = i;
-		}
-		int count = 0;
-		mst = new int[m];
-		for (int i = 0; i < m; i++) {
-			int bv = edge[i].bv;
-			int ev = edge[i].ev;
-			int pb = find(bv);
-			int pe = find(ev);
-			if (pb != pe) {
-				union(pb, pe);
-				mst[count] = i + 1;
-				count++;
-			}
-			if (count == n - 1) {
-				break;
-			}
-		}
-		if (count == n - 1) {
-			for (int i = 0; i < mst.length; i++) {
-				if (mst[i] != 0)
-					System.out.println(mst[i]);
-			}
-		} else
-			System.out.println("Disconnected Graph");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int count = a*(b+1);
+		for(int i=0; i<b; i++) {
+			count -= sc.nextInt();
+		}System.out.println(count);
 	}
-
 	static class Reader {
 		final private int BUFFER_SIZE = 1 << 16;
 		private DataInputStream din;
@@ -168,5 +116,4 @@ public class DisjointSetTest {
 			din.close();
 		}
 	}
-
 }

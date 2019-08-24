@@ -65,7 +65,7 @@ public class SelectiveCutting {
 			int l = sc.nextInt();
 			int r = sc.nextInt();
 			int min = sc.nextInt();
-			System.out.println(tree.getSum(0, n - 1, l, r, 0));
+			System.out.println(tree.getSum(min, n - 1, l, r, 0));
 		}
 
 	}

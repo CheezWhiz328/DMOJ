@@ -11,7 +11,7 @@ public class AMathProblem {
         double m = 1;
         while(true){
             if(function(K,P,X,m)<=function(K,P,X,m+1)){
-                System.out.printf("%.3f", function(K,P,X,m));
+                System.out.printf("%.3f\n", function(K,P,X,m));
                 break;
             }
             m++;

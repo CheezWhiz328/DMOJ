@@ -1,67 +1,27 @@
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
-public class DisjointSetTest {
-	public static Edge[] edge;
-	public static int[] parent;
-	public static int[] mst;
-
-	public static class Edge {
-		int bv;
-		int ev;
-	}
-
-	public static int find(int n) {
-		if (parent[n] != n) {
-			parent[n] = find(parent[n]);
-		}
-
-		return parent[n];
-	}
-
-	public static void union(int n1, int n2) {
-		parent[n1] = n2;
-	}
-
+public class SecretSignal {
 	public static void main(String[] args) throws IOException {
-		// TODO code application logic here
 		Reader sc = new Reader();
 		int n = sc.nextInt();
-		int m = sc.nextInt();
-		edge = new Edge[m];
-		for (int i = 0; i < m; i++) {
-			edge[i] = new Edge();
-			edge[i].bv = sc.nextInt() - 1;
-			edge[i].ev = sc.nextInt() - 1;
+		int k = sc.nextInt();
+		int arr[] = new int[n+1];
+		for (int i = 1; i <= n; i++) {
+			arr[i] = sc.nextInt();
+			arr[i] += arr[i - 1];
+			arr[i] %= k;
 		}
-		parent = new int[n];
-		for (int i = 0; i < n; i++) {
-			parent[i] = i;
-		}
+
 		int count = 0;
-		mst = new int[m];
-		for (int i = 0; i < m; i++) {
-			int bv = edge[i].bv;
-			int ev = edge[i].ev;
-			int pb = find(bv);
-			int pe = find(ev);
-			if (pb != pe) {
-				union(pb, pe);
-				mst[count] = i + 1;
-				count++;
-			}
-			if (count == n - 1) {
-				break;
-			}
+		int arr1[] = new int[k+1];
+		for (int i = 0; i <= n; i++) {
+			arr1[arr[i]]++;
 		}
-		if (count == n - 1) {
-			for (int i = 0; i < mst.length; i++) {
-				if (mst[i] != 0)
-					System.out.println(mst[i]);
-			}
-		} else
-			System.out.println("Disconnected Graph");
+		for (int i = 0; i < n; i++) {
+			arr1[arr[i]]--;
+			count += arr1[arr[i]];
+		}
+		System.out.println(count);
 	}
 
 	static class Reader {
@@ -168,5 +128,4 @@ public class DisjointSetTest {
 			din.close();
 		}
 	}
-
 }
