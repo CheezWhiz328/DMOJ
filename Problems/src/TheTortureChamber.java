@@ -1,27 +1,37 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class TheTortureChamber {
+	static boolean isPrime(long n) {
+		if (n <= 1) {
+			return false;
+		}
+		if (n <= 3) {
+			return true;
+		}
+		if (n % 2 == 0 || n % 3 == 0) {
+			return false;
+		}
+
+		for (long i = 5; i * i <= n; i += 6) {
+			if (n % i == 0 || n % (i + 2) == 0) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
-		}
-		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
-				}
-			}
-			count = Math.max(count, dp[i]);
+		long a = sc.nextLong();
+		long b = sc.nextLong();
+		long count = 0;
+		for (long i = a; i < b; i++) {
+			count += isPrime(i) ? 1 : 0;
+
 		}
 		System.out.println(count);
-
 	}
 
 	static class FastReader {

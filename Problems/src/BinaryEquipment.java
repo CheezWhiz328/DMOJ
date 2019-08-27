@@ -1,27 +1,16 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class BinaryEquipment {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
+		for (int i = 0; i < 5; i++) {
+			int a = sc.nextInt();
+			a += 1 << 30;
+			int b = sc.nextInt();
+			String c = Integer.toBinaryString(a);
+			System.out.println(c.charAt(c.length() - b - 1) == '1' ? 1 : 0);
 		}
-		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
-				}
-			}
-			count = Math.max(count, dp[i]);
-		}
-		System.out.println(count);
-
 	}
 
 	static class FastReader {

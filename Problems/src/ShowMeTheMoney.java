@@ -1,27 +1,26 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class ShowMeTheMoney {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
-		}
 		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
+		for(int i=0; i<5; i++) {
+			String a = sc.next();
+			boolean b = false;
+			for(int j=0; j<a.length(); j++) {
+				if(a.charAt(j)=='+') {
+					count++;
+				}else {
+					count--;
 				}
-			}
-			count = Math.max(count, dp[i]);
+				if(count<0) {
+					count = 0;
+					b = true;
+					break;
+				}
+			}System.out.println(b ? "OH NOES!" : count);
 		}
-		System.out.println(count);
-
 	}
 
 	static class FastReader {

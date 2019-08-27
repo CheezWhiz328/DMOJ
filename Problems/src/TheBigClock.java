@@ -1,27 +1,17 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class TheBigClock {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
-		}
-		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
-				}
-			}
-			count = Math.max(count, dp[i]);
-		}
-		System.out.println(count);
-
+		int h = sc.nextInt();
+		int m = sc.nextInt();
+		int add = sc.nextInt();
+		h += (add + m) / 60;
+		h %= 24;
+		m += add;
+		m %= 60;
+		System.out.println(h + " " + m);
 	}
 
 	static class FastReader {

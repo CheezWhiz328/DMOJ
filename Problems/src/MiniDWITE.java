@@ -2,9 +2,21 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class reader {
+public class MiniDWITE {
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
+		for (int t = 0; t < 5; t++) {
+			int arr[] = new int[5];
+			for (int i = 0; i < 5; i++) {
+				arr[i] = sc.nextInt() + sc.nextInt();
+			}
+			int count = 0;
+			for (int i = 0; i < 5; i++) {
+				if (arr[i] == sc.nextInt())
+					count++;
+			}
+			System.out.println(count);
+		}
 
 	}
 

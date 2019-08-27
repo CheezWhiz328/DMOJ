@@ -1,27 +1,24 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class Pet {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
-		}
-		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
-				}
+		int arr[] = new int[5];
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 4; j++) {
+				arr[i] += sc.nextInt();
 			}
-			count = Math.max(count, dp[i]);
 		}
-		System.out.println(count);
-
+		int max = 0;
+		int ind = -1;
+		for (int i = 0; i < 5; i++) {
+			if (arr[i] > max) {
+				max = arr[i];
+				ind = i;
+			}
+		}
+		System.out.println((ind + 1) + " " + max);
 	}
 
 	static class FastReader {

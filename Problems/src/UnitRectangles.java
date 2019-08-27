@@ -1,29 +1,21 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class UnitRectangles {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
-		}
-		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
+		for(int t=0; t<5; t++) {
+			int a = sc.nextInt();
+			int count = 0;
+			for(int i=1; i*i<=a; i++) {
+				for(int j=i; i*j<=a; j++) {
+//					System.out.println(i+" "+j);
+					count++;
 				}
-			}
-			count = Math.max(count, dp[i]);
+			}System.out.println(count);
 		}
-		System.out.println(count);
-
 	}
-
+	
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

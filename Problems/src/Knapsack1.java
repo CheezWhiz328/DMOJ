@@ -1,26 +1,40 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Knapsack1 {
+	static int c;
 
-	public static void main(String[] args) throws IOException {
-		FastReader sc = new FastReader();
-		int n = sc.nextInt();
-		int w = sc.nextInt();
-
-		int weight[] = new int[n];
-		int value[] = new int[n];
-		long dp[] = new long[w];
-		for (int i = 0; i < n; i++) {
-			weight[i] = sc.nextInt();
-			value[i] = sc.nextInt();
-		}
-		for (int i = 0; i < n; i++) {
-			for (int j = w; j >= weight[i]; j--) {
-
+	static long knapSack(long W, long wt[], long val[]) {
+		long dp[][] = new long[c + 1][(int) (W + 1)];
+		for (int i = 0; i <= c; i++) {
+			for (int j = 0; j <= W; j++) {
+				if (i == 0 || j == 0) {
+					dp[i][j] = 0;
+				} else if (wt[i - 1] <= j) {
+					dp[i][j] = Math.max(val[i - 1] + dp[i - 1][(int) (j - wt[i - 1])], dp[i - 1][j]);
+				} else {
+					dp[i][j] = dp[i - 1][j];
+				}
 			}
 		}
-		System.out.println(dp[w]);
+
+		return dp[c][(int) W];
+	}
+
+	public static void main(String args[]) {
+		FastReader sc = new FastReader();
+		c = sc.nextInt();
+		int W = sc.nextInt();
+		long val[] = new long[c];
+		long wt[] = new long[c];
+
+		for (int i = 0; i < c; i++) {
+			wt[i] = sc.nextInt();
+			val[i] = sc.nextInt();
+		}
+		System.out.println(knapSack(W, wt, val));
 	}
 
 	static class FastReader {

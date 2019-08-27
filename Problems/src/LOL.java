@@ -1,29 +1,20 @@
 import java.util.*;
 import java.io.*;
 
-public class Height {
+public class LOL {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		int a = sc.nextInt();
-		int arr[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			arr[i] = sc.nextInt();
-		}
-		int count = 0;
-		int dp[] = new int[1005];
-		for (int i = 0; i < a; i++) {
-			dp[i] = arr[i];
-			for (int j = 0; j < i; j++) {
-				if (arr[i] > arr[j]) {
-					dp[i] = Math.max(dp[i], arr[i] + dp[j]);
-				}
-			}
-			count = Math.max(count, dp[i]);
-		}
-		System.out.println(count);
-
+		int x[] = new int[a];
+		int y[] = new int[a];
+		for(int i=0; i<a; i++) {
+			x[i] = sc.nextInt();
+			y[i] = sc.nextInt();
+		}Arrays.sort(x);
+		Arrays.sort(y);
+		System.out.println(Math.abs((x[a-1]-x[0])*(y[a-1]-y[0])));
 	}
-
+	
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;
