@@ -1,30 +1,39 @@
 import java.util.*;
 import java.io.*;
 
-public class Granica {
+public class Troyangles {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 		int a = sc.nextInt();
-		int b[] = new int[a];
-		for(int i=0; i<a; i++) {
-			b[i] = sc.nextInt();
+		int max = 2005;
+		int count = 0;
+		boolean arr[][] = new boolean[max][max];
+		int dp[][] = new int[max][max];
+		for (int i = 1; i <= a; i++) {
+			String b = sc.next();
+			for (int j = 0; j < a; j++) {
+				arr[i][j + 1] = b.charAt(j) == '#' ? true : false;
+				dp[i][j + 1] = b.charAt(j) == '#' ? 1 : 0;
+			}
 		}
-		Arrays.sort(b);
-		for(int i=2; i<=b[0]; i++) {
-			boolean flag = true;
-			int modNum = b[0]%i;
-			for(int j=1; j<a; j++) {
-				if(b[j]%i!=modNum) {
-					flag = false;
-					break;
+
+		for (int i = a - 1; i > 0; i--) {
+			for (int j = 1; j <= a; j++) {
+				if (arr[i][j] && arr[i + 1][j] && arr[i + 1][j - 1] && arr[i + 1][j + 1]) {
+					dp[i][j] = Math.min(dp[i + 1][j - 1], dp[i + 1][j + 1]) + 1;
 				}
-			}
-			if(flag) {
-				System.out.println(i);
+				count += dp[i][j];
 			}
 		}
+//		for (int i = 1; i <= a; i++) {
+//			for (int j = 0; j < a; j++) {
+//				System.out.print(dp[i][j]);
+//			}
+//			System.out.println();
+//		}
+		System.out.println(count);
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;
