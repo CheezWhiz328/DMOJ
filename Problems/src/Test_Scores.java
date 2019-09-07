@@ -1,8 +1,6 @@
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-import javax.xml.soap.Node;
-
 public class Test_Scores {
 	public static void main(String args) {
 		Scanner sc = new Scanner(System.in);
