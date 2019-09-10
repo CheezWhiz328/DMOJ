@@ -1,6 +1,7 @@
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class inputReader {
+public class inputreader {
 	public static void main(String[] args) throws IOException {
 		InputReader sc = new InputReader();
 

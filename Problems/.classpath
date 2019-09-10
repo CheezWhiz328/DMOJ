@@ -6,5 +6,8 @@
 	<classpathentry kind="src" path="BubbleCup"/>
 	<classpathentry kind="src" path="CCO"/>
 	<classpathentry kind="src" path="Classics"/>
+	<classpathentry kind="src" path="DataStructureTests"/>
+	<classpathentry kind="src" path="IOs for CP"/>
+	<classpathentry kind="src" path="COCI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
