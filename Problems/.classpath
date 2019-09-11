@@ -9,5 +9,11 @@
 	<classpathentry kind="src" path="DataStructureTests"/>
 	<classpathentry kind="src" path="IOs for CP"/>
 	<classpathentry kind="src" path="COCI"/>
+	<classpathentry kind="src" path="ECOO"/>
+	<classpathentry kind="src" path="FHC"/>
+	<classpathentry kind="src" path="IOI"/>
+	<classpathentry kind="src" path="SIUCF"/>
+	<classpathentry kind="src" path="MWC"/>
+	<classpathentry kind="src" path="CCC"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
