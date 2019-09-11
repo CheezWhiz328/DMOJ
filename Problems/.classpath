@@ -15,5 +15,7 @@
 	<classpathentry kind="src" path="SIUCF"/>
 	<classpathentry kind="src" path="MWC"/>
 	<classpathentry kind="src" path="CCC"/>
+	<classpathentry kind="src" path="TSOC"/>
+	<classpathentry kind="src" path="VM7WC"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

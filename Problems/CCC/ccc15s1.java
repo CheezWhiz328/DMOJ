@@ -6,7 +6,7 @@ public class ccc15s1 {
 		FastReader sc = new FastReader();
 		
 		int a = sc.nextInt();
-		Deque<Integer> b = new ArrayDeque<Integer>();
+		ArrayDeque<Integer> b = new ArrayDeque<Integer>();
 			
 		for(int i=0; i<a; i++) {
 			int c = sc.nextInt();
