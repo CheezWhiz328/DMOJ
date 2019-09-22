@@ -17,5 +17,6 @@
 	<classpathentry kind="src" path="CCC"/>
 	<classpathentry kind="src" path="TSOC"/>
 	<classpathentry kind="src" path="VM7WC"/>
+	<classpathentry kind="src" path="FunMath"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
