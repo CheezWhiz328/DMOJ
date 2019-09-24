@@ -1,31 +1,20 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Knapsack1 {
-
-	static long KnapSack(long val[], int wt[], int N, int W) {
-		long[] dp = new long[W + 1];
-		for (int i = 0; i < N; i++) {
-			for (int j = W; j >= wt[i]; j--) {
-				dp[j] = Math.max(dp[j], val[i] + dp[j - wt[i]]);
-			}
-		}
-		return dp[W];
-	}
-
-
+public class dwite08c2p1 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int W = sc.nextInt();
-		long val[] = new long[N];
-		int wt[] = new int[N];
-		
-		for(int i=0; i<N; i++) {
-			wt[i] = sc.nextInt();
-			val[i] = sc.nextLong();
+		for(int t=0; t<5; t++) {
+			for(int i=0; i<7; i++) {
+				String a = sc.next();
+				int count = 0;
+				for(int j=0; j<a.length(); j++) {
+					if(a.charAt(j)=='#') {
+						count++;
+					}
+				}System.out.print(count);
+			}System.out.println();
 		}
-		System.out.println(KnapSack(val,wt,N,W));
 	}
 	
 	static class FastReader {

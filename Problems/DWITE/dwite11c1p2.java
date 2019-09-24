@@ -1,33 +1,27 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Knapsack1 {
-
-	static long KnapSack(long val[], int wt[], int N, int W) {
-		long[] dp = new long[W + 1];
-		for (int i = 0; i < N; i++) {
-			for (int j = W; j >= wt[i]; j--) {
-				dp[j] = Math.max(dp[j], val[i] + dp[j - wt[i]]);
-			}
-		}
-		return dp[W];
-	}
-
-
+public class dwite11c1p2 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int W = sc.nextInt();
-		long val[] = new long[N];
-		int wt[] = new int[N];
-		
-		for(int i=0; i<N; i++) {
-			wt[i] = sc.nextInt();
-			val[i] = sc.nextLong();
+		for (int t = 0; t < 5; t++) {
+			int a = sc.nextInt();
+			int arr[] = new int[a];
+			for (int i = 0; i < a; i++) {
+				arr[i] = sc.nextInt();
+			}
+			Arrays.sort(arr);
+			int count = 0;
+			while (arr[0] != arr[a - 1]) {
+				arr[a - 1]--;
+				arr[0]++;
+				count++;
+				Arrays.sort(arr);
+			}
+			System.out.println(count);
 		}
-		System.out.println(KnapSack(val,wt,N,W));
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

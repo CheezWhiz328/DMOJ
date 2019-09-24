@@ -1,33 +1,29 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Knapsack1 {
+public class ccc15j5 {
+	static int MAX = 1 << 8;
+	static int dp[][] = new int[MAX][MAX];
 
-	static long KnapSack(long val[], int wt[], int N, int W) {
-		long[] dp = new long[W + 1];
-		for (int i = 0; i < N; i++) {
-			for (int j = W; j >= wt[i]; j--) {
-				dp[j] = Math.max(dp[j], val[i] + dp[j - wt[i]]);
-			}
+	static int ans(int n, int k) {
+		if (n < 0 || k == 0) {
+			return 0;
 		}
-		return dp[W];
+		if (n == 0 || n == n - k) {
+			return 1;
+		}
+		return dp[n][k] = dp[n][k] == 0 ? ans(n, k - 1) + ans(n - k, k) : dp[n][k];
 	}
-
 
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int W = sc.nextInt();
-		long val[] = new long[N];
-		int wt[] = new int[N];
-		
-		for(int i=0; i<N; i++) {
-			wt[i] = sc.nextInt();
-			val[i] = sc.nextLong();
-		}
-		System.out.println(KnapSack(val,wt,N,W));
+
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+
+		System.out.println(ans(n - k, k));
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

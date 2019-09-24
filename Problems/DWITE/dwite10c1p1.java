@@ -1,31 +1,16 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Knapsack1 {
-
-	static long KnapSack(long val[], int wt[], int N, int W) {
-		long[] dp = new long[W + 1];
-		for (int i = 0; i < N; i++) {
-			for (int j = W; j >= wt[i]; j--) {
-				dp[j] = Math.max(dp[j], val[i] + dp[j - wt[i]]);
-			}
-		}
-		return dp[W];
-	}
-
-
+public class dwite10c1p1 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int N = sc.nextInt();
-		int W = sc.nextInt();
-		long val[] = new long[N];
-		int wt[] = new int[N];
 		
-		for(int i=0; i<N; i++) {
-			wt[i] = sc.nextInt();
-			val[i] = sc.nextLong();
+		for(int i=0; i<5; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			int c = sc.nextInt();
+			System.out.println(c < 1997 || c == 1997 && b < 10 || c == 1997 && b == 10 && a == 27 ? "old enough" : "too young");
 		}
-		System.out.println(KnapSack(val,wt,N,W));
 	}
 	
 	static class FastReader {
