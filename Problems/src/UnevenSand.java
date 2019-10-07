@@ -1,9 +1,28 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class fastreader {
+public class UnevenSand {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
+		int len = 2000000000;
+
+		int l = 1;
+		int r = len;
+
+		while (l <= r) {
+			int ind = (int) (l / 2.0 + r / 2.0);
+			System.out.println(ind);
+			String s = sc.next();
+			if (s.equals("OK")) {
+				System.exit(0);
+			}
+			if (s.equals("SINKS")) {
+				l = ind + 1;
+			} else {
+				r = ind - 1;
+
+			}
+		}
 	}
 
 	static class FastReader {
@@ -47,4 +66,5 @@ public class fastreader {
 			return str;
 		}
 	}
+
 }

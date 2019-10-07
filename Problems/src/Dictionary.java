@@ -1,9 +1,24 @@
 import java.util.*;
 import java.io.*;
 
-public class fastreader {
+public class Dictionary {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
+		int a = sc.nextInt();
+		String[] arr = new String[a];
+		for (int i = 0; i < a; i++) {
+			arr[i] = sc.next();
+		}
+		Arrays.sort(arr);
+		System.out.print(arr[0]);
+		for (int i = 1; i < a; i++) {
+			if (arr[i].charAt(0) == arr[i - 1].charAt(0)) {
+				System.out.print(", ");
+			} else {
+				System.out.println();
+			}
+			System.out.print(arr[i]);
+		}
 	}
 
 	static class FastReader {

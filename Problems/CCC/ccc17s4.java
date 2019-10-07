@@ -43,14 +43,14 @@ public class ccc17s4 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Reader r = new Reader();
-		int n = r.nextInt(), m = r.nextInt(), d = r.nextInt();
+		Reader sc = new Reader();
+		int n = sc.nextInt(), m = sc.nextInt(), d = sc.nextInt();
 		nodes = new int[n][2];
 		LinkedList<path> paths = new LinkedList<path>();
 		for (int i = 0; i < n; i++)
 			nodes[i][0] = -1;
 		for (int i = 0; i < m; i++) {
-			int a = r.nextInt() - 1, b = r.nextInt() - 1, w = r.nextInt();
+			int a = sc.nextInt() - 1, b = sc.nextInt() - 1, w = sc.nextInt();
 			if (i < n - 1) {
 				paths.add(new path(a, b, w, 0));
 			} else {
