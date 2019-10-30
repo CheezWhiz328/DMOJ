@@ -90,9 +90,8 @@ public class APlusBhard {
 		int a = Integer.parseInt(br.readLine());
 
 		for (int i = 0; i < a; i++) {
-			String[] tmp = br.readLine().split(" ");
-			String n = tmp[0];
-			String m = tmp[1];
+			String n = br.readLine();
+			String m = br.readLine();
 
 			System.out.println(findSum(n,m));
 		}
