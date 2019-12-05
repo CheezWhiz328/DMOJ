@@ -1,4 +1,2 @@
 # DMOJ
-Solutions to various problems on the [Don Mills Online Judge](dmoj.ca)
-
-Need to add DMOPC, GFSSOC, Mock CCC, Seasonal, and Uncategorized
+(most of)My solutions to various problems on the [Don Mills Online Judge](dmoj.ca)
