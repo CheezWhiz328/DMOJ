@@ -1,47 +1,50 @@
 import java.util.*;
 import java.io.*;
 
-public class vmss7wc16c3p3 {
+public class ccc04s2 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 
 		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
+		int k = sc.nextInt();
 
-		int grid[][] = new int[n][n];
+		int arr[] = new int[n];
+		int rank[] = new int[n];
+		Arrays.fill(rank, 1);
 
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
-		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
+		for (int i = 0; i < k; i++) {
+			for (int j = 0; j < n; j++) {
+				int a = sc.nextInt();
+				arr[j] += a;
+				
+			}
+			
+			int min[] = arr.clone();
+			Arrays.sort(min);
+			for(int i1=0; i1<n; i1++) {
+				int ind = i1;
+				for(int j1=n-1; j1>=0; j1--) {
+					if(arr[ind]==min[j1]) {
+						rank[ind] = Math.max(n - j1, rank[ind]);
+						break;
+					}
 				}
 			}
+//			for(int i1=0; i1<n; i1++) {
+//				System.out.print(arr[i1]+" ");	
+//			}System.out.println();
 		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
+		int ans = -(1 << 30);
+		for (int i = 0; i < n; i++) {
+			ans = Math.max(ans, arr[i]);
+		}
+
+		for (int i = 0; i < n; i++) {
+			if (arr[i] == ans) {
+
+				System.out.println(
+						"Yodeller " + (i + 1) + " is the TopYodeller: score " + arr[i] + ", worst rank " + rank[i]);
+			}
 		}
 
 	}

@@ -19,5 +19,6 @@
 	<classpathentry kind="src" path="VM7WC"/>
 	<classpathentry kind="src" path="FunMath"/>
 	<classpathentry kind="src" path="DWITE"/>
+	<classpathentry kind="src" path="GCJ"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

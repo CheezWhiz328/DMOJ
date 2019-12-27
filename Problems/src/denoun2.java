@@ -1,49 +1,22 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.*;
 
-public class vmss7wc16c3p3 {
-	public static void main(String[] args) {
+public class denoun2 {
+	public static void main(String[] args) throws UnsupportedEncodingException {
 		FastReader sc = new FastReader();
-
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out, "UTF-8"));
 		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
-
-		int grid[][] = new int[n][n];
-
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
-		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
-				}
+		Pattern pattern = Pattern.compile("([A-Z-ÄÖÜ][/\\p{L}/u]*)");
+		while(n-->0) {
+			String s = sc.nextLine();
+			Matcher matcher = pattern.matcher(s);
+			while (matcher.find()) {
+			    out.println(matcher.group(1));
 			}
 		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
-		}
-
+		out.close();
 	}
 
 	static class FastReader {

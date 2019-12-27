@@ -1,47 +1,27 @@
 import java.util.*;
 import java.io.*;
 
-public class vmss7wc16c3p3 {
+public class coci08c2p2 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 
 		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
-
-		int grid[][] = new int[n][n];
-
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
-		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
+		int k = sc.nextInt();
+		boolean sieve[] = new boolean[n + 1];
+		int count = 0;
+		for (int i = 2; i <= n; i++) {
+			if (!sieve[i]) {
+				for (int j = i; j <= n; j += i) {
+					if (!sieve[j]) {
+						sieve[j] = true;
+						count++;
+						if (count == k) {
+							System.out.println(j);
+							System.exit(0);
+						}
+					}
 				}
 			}
-		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
 		}
 
 	}

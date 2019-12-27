@@ -1,49 +1,35 @@
 import java.util.*;
 import java.io.*;
 
-public class vmss7wc16c3p3 {
+public class dwite10c3p5 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
+		int t = 5;
+		while (t-- > 0) {
+			int n = sc.nextInt();
+			String arr[] = new String[n];
+			for (int i = 0; i < n; i++) {
+				arr[i] = sc.next();
+			}
+			for (int q = 0; q < 5; q++) {
+				String s = sc.next();
+				s = s.replace("?", ".");
+				s = s.replace("*", ".*");
 
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
-
-		int grid[][] = new int[n][n];
-
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
-		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
+				String a = "";
+				for (int i = 0; i < n; i++) {
+					if (arr[i].matches(s)) {
+						a += arr[i] + ", ";
+//						System.out.println(a);
+					}
+				}
+				if (a.equals("")) {
+					System.out.println("NO MATCH");
+				} else {
+					System.out.println(a.substring(0, a.length()-2));
 				}
 			}
 		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
-		}
-
 	}
 
 	static class FastReader {

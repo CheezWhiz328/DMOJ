@@ -1,49 +1,18 @@
 import java.util.*;
 import java.io.*;
+import java.math.BigInteger;
 
-public class vmss7wc16c3p3 {
+public class modinv {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
-
-		int grid[][] = new int[n][n];
-
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
-		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
-				}
-			}
-		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
-		}
-
+		
+		String s = sc.next();
+		String s1 = sc.next();
+		
+		BigInteger n = new BigInteger(s);
+		BigInteger n1 = new BigInteger(s1);
+		
+		System.out.println(n.modInverse(n1));
 	}
 
 	static class FastReader {

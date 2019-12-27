@@ -1,48 +1,50 @@
 import java.util.*;
 import java.io.*;
 
-public class vmss7wc16c3p3 {
+public class ioi11p3 {
+
+	static long psa[];
+	static int r, l;
+	static long b;
+	static int range = 0;
+
+	static long cost(int left, int right) {
+		int mid = (left + right) / 2;
+		if ((range & 1) == 0) {
+			return (psa[right] - psa[mid]) - (psa[mid - 1] - psa[left - 1]);
+		} else {
+			return (psa[right] - psa[mid]) - (psa[mid] - psa[left - 1]);
+		}
+	}
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
 
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
+		r = sc.nextInt();
+		l = sc.nextInt();
+		b = sc.nextLong();
 
-		int grid[][] = new int[n][n];
+		psa = new long[r + 1];
 
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
+		for (int i = 1; i <= r; i++) {
+			psa[i] = sc.nextInt() + psa[i - 1];
 		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
 
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
-				}
+		long max = 0;
+		int left = 1;
+		int right = 1;
+		range = right - left + 1;
+		while (left <= r) {
+			while (right < r && cost(left, right + 1) <= b) {
+				right++;
+				range++;
 			}
+			max = Math.max(max, range);
+			left++;
+			range--;
 		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
-		}
+
+		System.out.println(max);
 
 	}
 

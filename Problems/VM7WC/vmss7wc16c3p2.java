@@ -8,8 +8,6 @@ public class vmss7wc16c3p2 {
 
 		int V = sc.nextInt();
 		int E = sc.nextInt();
-		int a = sc.nextInt() - 1;
-		int b = sc.nextInt() - 1;
 
 		boolean[][] map = new boolean[V][V];
 		for (int i = 0; i < E; i++) {
@@ -23,7 +21,8 @@ public class vmss7wc16c3p2 {
 		Arrays.fill(step, 1 << 30);
 
 		LinkedList<Integer> queue = new LinkedList<Integer>();
-
+		int a = sc.nextInt() - 1;
+		int b = sc.nextInt() - 1;
 		step[a] = 0;
 		queue.add(a);
 

@@ -1,49 +1,29 @@
 import java.util.*;
 import java.io.*;
 
-public class vmss7wc16c3p3 {
+public class ccc13s5 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-
 		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int b = sc.nextInt() - 1;
-		int q = sc.nextInt();
-
-		int grid[][] = new int[n][n];
-
-		for (int i = 0; i < m; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			int z = sc.nextInt();
-
-			grid[x][y] = z;
-			grid[y][x] = z;
-
-		}
-		int[] step = new int[n];
-		Arrays.fill(step, 1 << 30);
-		LinkedList<Integer> queue = new LinkedList<Integer>();
-
-		step[b] = 0;
-		queue.add(b);
-
-		while (!queue.isEmpty()) {
-			int cur = queue.poll();
-
-			for (int c = 0; c < n; c++) {
-				if (grid[cur][c] != 0 && step[c] > step[cur] + grid[cur][c]) {
-					step[c] = step[cur] + grid[cur][c];
-					queue.add(c);
+		long count = 0;
+		while (n > 1) {
+			boolean prime = true;
+			for (int fac = 2; fac * fac <= n; fac++) {
+				if (n % fac == 0) {
+					prime = false;
+					int temp = n/fac;
+					n -= temp;
+					count += n/temp;
+					break;
 				}
 			}
+			if (prime) {
+				n--;
+				count += n;
+			}
+//			System.out.println(n);
 		}
-		while (q-- > 0) {
-			int a = sc.nextInt() - 1;
-			
-			System.out.println(step[a] == 1 << 30 ? -1 : step[a]);
-		}
-
+		System.out.println(count);
 	}
 
 	static class FastReader {
