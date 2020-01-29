@@ -1,29 +1,27 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class dwite09c3p2 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
-		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
 
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
+		int fib[] = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946,
+				17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887,
+				9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733,
+				1134903170 };
+		int t = 5;
+		while (t-- > 0) {
+			int n = sc.nextInt();
+			int min = 1<<30;
+			int ind = 0;
+			for(int i=0; i<fib.length; i++) {
+				if(Math.abs(n-fib[i])<min) {
+					min = Math.abs(n - fib[i]);
+					ind = i;
+				}
 			}
-			if (count < min) {
-				min = count;
-			}
+			System.out.println(fib[ind]);
 		}
-		System.out.println(min);
 	}
 
 	static class FastReader {

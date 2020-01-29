@@ -1,29 +1,29 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class cco07p2 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
+		Set<String> set = new HashSet<String>();
+		int n = sc.nextInt();
+		for(int i=1; i<=n; i++) {
+			int arr[] = new int[6];
+			for(int j=0; j<6; j++) {
+				arr[j] = sc.nextInt();
+			}
+			Arrays.sort(arr);
+			String s = "";
+			for(int j=0; j<6; j++) {
+				s+=arr[j];
+			}
+			set.add(s);
+			if(set.size()!=i) {
+				System.out.println("Twin snowflakes found.");
+				System.exit(0);
+			}
+		}
 		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
-		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
-
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
-			}
-			if (count < min) {
-				min = count;
-			}
-		}
-		System.out.println(min);
+		System.out.println("No two snowflakes are alike.");
 	}
 
 	static class FastReader {

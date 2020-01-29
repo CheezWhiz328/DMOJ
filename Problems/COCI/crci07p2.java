@@ -1,29 +1,54 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class crci07p2 {
+	static int cost[][] = new int[1005][1005];
+	static int arr[] = new int[1005];
+	static int n;
+	static int ans = 1 << 30;
+
+	static int solve(int i, int j) {
+
+		if (i < 0 || i >= n) {
+			return 1 << 30;
+		}
+
+		if (i == n - 1) {
+			return arr[i];
+		}
+
+		ans = cost[i][j];
+
+		if (ans != 1 << 30) {
+			return ans;
+		}
+
+		ans = 1 << 30;
+
+		ans = Math.min(solve(i - j, j) + arr[i], solve(i + j + 1, j + 1) + arr[i]);
+
+		return cost[i][j] = ans;
+	}
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
+
+		n = sc.nextInt();
+		arr = new int[n];
+
+		for (int i = 0; i < n; i++) {
 			arr[i] = sc.nextInt();
 		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
 
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
-			}
-			if (count < min) {
-				min = count;
-			}
+		cost = new int[n][n];
+
+		for (int i = 0; i < n; i++) {
+			Arrays.fill(cost[i], 1 << 30);
 		}
-		System.out.println(min);
+
+		solve(1, 1);
+
+		System.out.println(ans);
 	}
 
 	static class FastReader {

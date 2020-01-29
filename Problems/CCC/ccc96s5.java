@@ -1,29 +1,34 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class ccc96s5 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
-		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
 
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
+		int t = sc.nextInt();
+		while (t-- > 0) {
+			int n = sc.nextInt();
+			int a[] = new int[n];
+			int b[] = new int[n];
+
+			for (int i = 0; i < n; i++) {
+				a[i] = sc.nextInt();
 			}
-			if (count < min) {
-				min = count;
+
+			for (int i = 0; i < n; i++) {
+				b[i] = sc.nextInt();
 			}
+			int MAX = 0;
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					if (a[i] == b[j]) {
+						MAX = Math.max(MAX, j - i);
+					}
+				}
+			}
+
+			System.out.println("The maximum distance is " + MAX);
 		}
-		System.out.println(min);
 	}
 
 	static class FastReader {

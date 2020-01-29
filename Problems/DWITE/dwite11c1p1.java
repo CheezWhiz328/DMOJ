@@ -1,29 +1,32 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class ACircularGame {
+public class dwite11c1p1 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
-		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
 
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
+		int t = 5;
+		while (t-- > 0) {
+			String arr[] = sc.nextLine().split(" ");
+			for (int i = 0; i < arr.length; i++) {
+				try {
+					for (int j = 0; j < arr[i].length(); j++) {
+						Integer.parseInt(arr[i].substring(j, j + 1));
+					}
+				} catch (Exception NumberFormatException) {
+					String s = "";
+					for (int j = 0; j < arr[i].length(); j++) {
+						s += arr[i].charAt(arr[i].length() - j - 1);
+					}
+					arr[i] = s;
+				}
 			}
-			if (count < min) {
-				min = count;
+
+			for (int i = 0; i < arr.length; i++) {
+				System.out.print(arr[arr.length - i - 1] + " ");
 			}
+			System.out.println();
 		}
-		System.out.println(min);
 	}
 
 	static class FastReader {

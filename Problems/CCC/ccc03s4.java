@@ -1,29 +1,41 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class ccc03s4 {
+	static int LCP(String s, String s1) {
+		for (int i = 0; i < Math.min(s.length(), s1.length()); i++) {
+			if (s.charAt(i) != s1.charAt(i)) {
+				return i;
+			}
+
+		}
+		return Math.min(s.length(), s1.length());
+	}
+
+	static long ans(String s) {
+		long count = s.length() * (s.length() + 1) / 2 + 1;
+
+		String[] suffix = new String[s.length()];
+		for (int i = 0; i < suffix.length; i++) {
+			suffix[i] = s.substring(i, s.length());
+		}
+		Arrays.sort(suffix);
+
+		for (int i = 0; i < s.length() - 1; i++) {
+//			System.out.println(LCP(suffix[i], suffix[i + 1]));
+			count -= LCP(suffix[i], suffix[i + 1]);
+		}
+
+		return count;
+	}
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
+		int n = sc.nextInt();
+		while (n-- > 0) {
+			String s = sc.next();
+			System.out.println(ans(s));
 		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
-
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
-			}
-			if (count < min) {
-				min = count;
-			}
-		}
-		System.out.println(min);
 	}
 
 	static class FastReader {

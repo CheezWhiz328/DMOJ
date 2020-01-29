@@ -1,29 +1,47 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class ccc17s3 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
-		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
 
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
-			}
-			if (count < min) {
-				min = count;
+		int n = sc.nextInt();
+
+		int MAX = 4005;
+		int arr[] = new int[MAX];
+
+		for (int i = 0; i < n; i++) {
+			arr[sc.nextInt()]++;
+		}
+
+		int ans[] = new int[MAX];
+
+		for (int i = 0; i < MAX; i++) {
+			if (arr[i] != 0) {
+
+				for (int j = i; j < MAX; j++) {
+					if (i == j) {
+						ans[i + j] += arr[i] >> 1;
+					} else if (arr[j] != 0) {
+						ans[i + j] += Math.min(arr[i], arr[j]);
+					}
+				}
 			}
 		}
-		System.out.println(min);
+
+		int solve = 0;
+		int solve1 = 0;
+		for (int i = 0; i < MAX; i++) {
+			if (ans[i] > solve) {
+				solve = ans[i];
+				solve1 = 1;
+			} else if (ans[i] == solve) {
+				solve1++;
+			}
+		}
+
+		System.out.println(solve + " " + solve1);
+
 	}
 
 	static class FastReader {

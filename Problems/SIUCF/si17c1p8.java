@@ -1,29 +1,37 @@
 import java.util.*;
 import java.io.*;
 
-public class ACircularGame {
+public class si17c1p8 {
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int arr[] = new int[N];
-		for (int i = 0; i < N; i++) {
+
+		int n = sc.nextInt();
+		int t = sc.nextInt();
+
+		int arr[] = new int[n];
+		for (int i = 0; i < n; i++) {
 			arr[i] = sc.nextInt();
 		}
-		long min = 1 << 60L;
-		for (int i = 0; i < N; i++) {
-			int count = 0;
-			for (int j = 0; j < N; j++) {
 
-				count += Math.min(Math.abs(arr[i] - arr[j]),
-						Math.min(Math.abs((arr[i] + M) - arr[j]), Math.abs(arr[i] - (arr[j] + M))));
+		long count = 0;
+		for (int i = 0; i < 1 << n; i++) {
+			int count1 = 0;
+			for (int j = n - 1; j >= 0; j--) {
+				if (((i >> j) & 1) == 1) {
+					count1 += arr[j];
+//					System.out.print(1);
+				} else {
+//					System.out.print(0);
+				}
 			}
-			if (count < min) {
-				min = count;
+			if (count1 == t) {
+				count++;
 			}
+//			System.out.println();
+
 		}
-		System.out.println(min);
+		System.out.println(count);
+
 	}
 
 	static class FastReader {
