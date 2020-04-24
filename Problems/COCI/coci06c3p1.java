@@ -1,31 +1,31 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class ioi94p1 {
+public class coci06c3p1 {
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[][] = new int[a+1][a+1];
-		int dp[][] = new int[a+1][a+1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=i; j++) {
-				arr[i][j] = sc.nextInt();
+		int arr[] = new int[9];
+		int count = -100;
+		for(int i=0; i<9; i++) {
+			arr[i] = sc.nextInt();
+			count+=arr[i];
+		}
+		for(int i=0; i<9; i++) {
+			for(int j=i+1; j<9; j++) {
+				if(arr[i]+arr[j]==count) {
+					for(int t=0; t<9; t++) {
+						if(t!=i && t!=j) {
+							System.out.println(arr[t]);
+							
+						}
+					}
+					return;
+				}
 			}
 		}
-		dp[1][1] = arr[1][1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=a; j++) {
-				dp[i][j] = Math.max(dp[i-1][j] + arr[i][j], dp[i-1][j-1]+arr[i][j]);
-			}
-		}
-
-		int max = 0;
-		for(int i=0; i<a; i++) {
-			max = Math.max(max, dp[a][i]);
-		}
-		System.out.println(max);
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;
@@ -68,3 +68,5 @@ public class ioi94p1 {
 		}
 	}
 }
+
+

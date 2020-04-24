@@ -1,31 +1,43 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class ioi94p1 {
+public class modulosort {
+	static class edge implements Comparable<edge> {
+		int dis;
+		int w;
+
+		edge(int dis1, int w1) {
+			dis = dis1;
+			w = w1;
+		}
+
+		public int compareTo(edge o) {
+			return w - o.w;
+		}
+	}
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[][] = new int[a+1][a+1];
-		int dp[][] = new int[a+1][a+1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=i; j++) {
-				arr[i][j] = sc.nextInt();
-			}
-		}
-		dp[1][1] = arr[1][1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=a; j++) {
-				dp[i][j] = Math.max(dp[i-1][j] + arr[i][j], dp[i-1][j-1]+arr[i][j]);
-			}
+
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		edge arr[] = new edge[n];
+		int jank[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			jank[i] = sc.nextInt();
 		}
 
-		int max = 0;
-		for(int i=0; i<a; i++) {
-			max = Math.max(max, dp[a][i]);
+		Arrays.sort(jank);
+		for (int i = 0; i < n; i++) {
+			arr[i] = new edge(jank[i], jank[i] % k);
 		}
-		System.out.println(max);
+
+		Arrays.sort(arr);
+		for (int i = 0; i < n; i++) {
+			System.out.print(arr[i].dis + " ");
+		}
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

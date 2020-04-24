@@ -1,31 +1,44 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class ioi94p1 {
+public class dwite10c2p3 {
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[][] = new int[a+1][a+1];
-		int dp[][] = new int[a+1][a+1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=i; j++) {
-				arr[i][j] = sc.nextInt();
-			}
-		}
-		dp[1][1] = arr[1][1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=a; j++) {
-				dp[i][j] = Math.max(dp[i-1][j] + arr[i][j], dp[i-1][j-1]+arr[i][j]);
-			}
-		}
 
-		int max = 0;
-		for(int i=0; i<a; i++) {
-			max = Math.max(max, dp[a][i]);
+		int t = 5;
+		while (t-- > 0) {
+			int grid[][] = new int[9][9];
+			for (int i = 8; i >= 1; i--) {
+				String s = " " + sc.next();
+				for (int j = 1; j <= 8; j++) {
+					if (s.charAt(j) == '#') {
+						grid[i][j] = -(1 << 30);
+					} else if (s.charAt(j) == '.') {
+						grid[i][j] = 0;
+					} else {
+						grid[i][j] = s.charAt(j) - '0';
+					}
+				}
+			}
+
+			sc.next();
+
+			int dp[][] = new int[9][9];
+
+			for (int i = 1; i < 9; i++) {
+				for (int j = 1; j < 9; j++) {
+					if (grid[i][j] != -(1 << 30)) {
+						dp[i][j] = grid[i][j] + Math.max(dp[i][j - 1], dp[i - 1][j]);
+					}
+				}
+			}
+
+			System.out.println(dp[8][8]);
+
 		}
-		System.out.println(max);
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;

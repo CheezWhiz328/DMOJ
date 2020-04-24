@@ -1,31 +1,39 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class ioi94p1 {
+public class ccoprep16c2q2 {
+
 	public static void main(String[] args) {
 		FastReader sc = new FastReader();
-		int a = sc.nextInt();
-		int arr[][] = new int[a+1][a+1];
-		int dp[][] = new int[a+1][a+1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=i; j++) {
-				arr[i][j] = sc.nextInt();
-			}
+
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
 		}
-		dp[1][1] = arr[1][1];
-		for(int i=1; i<=a; i++) {
-			for(int j=1; j<=a; j++) {
-				dp[i][j] = Math.max(dp[i-1][j] + arr[i][j], dp[i-1][j-1]+arr[i][j]);
+		int dp[] = new int[35];
+		int ans = 0;
+		for (int i = 0; i < n; i++) {
+			int cur = 1;
+
+			for (int j = 0; j < 32; j++) {
+				if ((arr[i] & (1 << j)) != 0) {
+					cur = Math.max(cur, dp[j] + 1);
+					
+				}
 			}
+			for (int j = 0; j < 32; j++) {
+				if ((arr[i] & (1 << j)) != 0) {
+					dp[j] = Math.max(dp[j], cur);
+				}
+			}
+			ans = Math.max(ans, cur);
 		}
 
-		int max = 0;
-		for(int i=0; i<a; i++) {
-			max = Math.max(max, dp[a][i]);
-		}
-		System.out.println(max);
+		System.out.println(ans);
+
 	}
-	
+
 	static class FastReader {
 		BufferedReader br;
 		StringTokenizer st;
